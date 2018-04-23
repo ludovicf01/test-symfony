@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller;
 
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Patient;
+use AppBundle\Entity\medecin;
 
 class DefaultController extends Controller
 {
@@ -23,19 +23,22 @@ class DefaultController extends Controller
     
     public function loadFilesAction()
     {
-        
+        //scan du répertoire ../web/files
         $dir = '..' .DIRECTORY_SEPARATOR. 'web' .DIRECTORY_SEPARATOR. 'files';
         $files = scandir($dir);
         for($i = 0;$i < count($files); ++$i){
             $path = $dir .DIRECTORY_SEPARATOR. $files[$i];
             $txt_file    = file_get_contents($path);
+            //parsing d'un fichier
             $rows        = explode("\n", $txt_file);
-        
+            
             foreach($rows as $row => $data)
             {
                 $patient = new Patient();
+                $medecin = new medecin;
                 $em = $this->getDoctrine()->getManager();
                 $row_data = explode('|', $data);
+                //gére l'insertion des patient
                 if($row_data[0] == "PID"){
                     $pid5 = explode('^', $row_data[5]);
                     $patient->setNom($pid5[0]);
@@ -49,8 +52,15 @@ class DefaultController extends Controller
                     $patient->setCodepostal($pid11[4]);
                     $patient->setVille($pid11[2]);
                     $em->persist($patient);
-                    $em->flush();
+                }elseif ($row_data[0] == "ROL") {
+                    $rol4 = explode('^', $row_data[4]);
+                    $medecin->setNom($rol4[1]);
+                    $medecin->setPrenom($rol4[2]);
+                    if($rol4[12] == "RPPS")
+                        $medecin->setRpps ($rol4[0]);
+                    $em->persist($medecin);
                 }
+                $em->flush();
             }
         }
 

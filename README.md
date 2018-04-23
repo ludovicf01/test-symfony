@@ -28,4 +28,11 @@ $ git clone https://github.com/ludovicf01/test-symfony.git
 $ cd test-symfony
 $ composer install
 $ php app/console doctrine:database:create
+$ php app/console doctrine:schema:update --dump-sql
+$ php app/console doctrine:schema:update --force
 ```
+##resulta attendu
+[![](capture001.png)]
+[![](capture002.png)]
+[![](capture003.png)]
+[![](capture004.png)]
