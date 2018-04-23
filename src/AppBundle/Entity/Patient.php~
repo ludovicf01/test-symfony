@@ -218,27 +218,4 @@ class Patient
     {
         return $this->ville;
     }
-
-    /**
-     * Set genre
-     *
-     * @param string $genre
-     * @return Patient
-     */
-    public function setGenre($genre)
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    /**
-     * Get genre
-     *
-     * @return string 
-     */
-    public function getGenre()
-    {
-        return $this->genre;
-    }
 }
