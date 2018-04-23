@@ -36,4 +36,4 @@ $ php app/console doctrine:schema:update --force
 [![](capture001.png)]
 [![](capture002.png)]
 [![](capture003.png)]
-[![](capture004.png)]
+[![](capture005.png)]
