@@ -2,13 +2,15 @@ Test Symfony
 ===========
 
 ##Minimum requirements
+
 Sur mon environnement de développent j'utilise:
 > - MAMP 4.4.1
 > - PHP 7.2.1
 > - MYSQL 5.6.38
 
 ##Attention
-Mes paramètre du fichier parameters.yml
+
+Mes paramètres du fichier parameters.yml
 ```
 parameters:
     database_host: 127.0.0.1
@@ -22,7 +24,9 @@ parameters:
     mailer_password: null
     secret: 7e4148d5a7a82251a534bb90d5082161df238c73
 ```
+
 ##Déploiement
+
 ```
 $ git clone https://github.com/ludovicf01/test-symfony.git
 $ cd test-symfony
@@ -31,6 +35,7 @@ $ php app/console doctrine:database:create
 $ php app/console doctrine:schema:update --dump-sql
 $ php app/console doctrine:schema:update --force
 ```
+
 ##resulta attendu
 
 [![](capture001.png)]
